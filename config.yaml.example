@@ -1,0 +1,35 @@
+# MAKRAY configuration example
+# Copy this file to config.yaml and fill in your values.
+# You can also pass all settings as CLI flags or environment variables.
+
+# --------------------------------------------------------------------------- #
+# Obsidian vault
+# --------------------------------------------------------------------------- #
+vault: ~/my-obsidian-vault   # path to your Obsidian vault root
+
+# Glob patterns for files / folders to skip when indexing the vault
+exclude:
+  - .obsidian
+  - .trash
+  - "*.excalidraw.md"
+
+# --------------------------------------------------------------------------- #
+# Claude API
+# --------------------------------------------------------------------------- #
+# Set ANTHROPIC_API_KEY in your environment instead of storing the key here.
+# api_key: sk-ant-...
+
+model: claude-3-5-sonnet-20241022   # or claude-3-opus-20240229, etc.
+max_response_tokens: 2048
+
+# --------------------------------------------------------------------------- #
+# MAKRAY filter
+# --------------------------------------------------------------------------- #
+# Token budget for the Obsidian context injected into every Claude request.
+max_context_tokens: 4000
+
+# Max notes retrieved from the vault per query (before token trimming).
+top_k: 8
+
+# Max characters taken from each note as an excerpt.
+excerpt_chars: 600
