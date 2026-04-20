@@ -1,0 +1,4 @@
+# MAKRAY runtime dependencies
+anthropic>=0.28.0
+click>=8.1.0
+pyyaml>=6.0

@@ -1,0 +1,3 @@
+# MAKRAY development / testing dependencies
+pytest>=8.0
+pytest-mock>=3.12

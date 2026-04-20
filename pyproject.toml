@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "makray"
+version = "0.1.0"
+description = "MAKRAY — Operational Intelligent System Navigator: Obsidian ↔ Claude integration"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.28.0",
+    "click>=8.1.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+makray = "makray.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.12",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
