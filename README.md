@@ -87,6 +87,55 @@ MAKRAY › Based on your "Project Roadmap" note (tagged #planning, #makray):
 makray chat --vault ~/vault --query "Summarise my AI research notes"
 ```
 
+### Dry-run — inspect the context without calling Claude
+
+```bash
+makray chat --vault ~/vault --query "What is my roadmap?" --dry-run
+```
+
+### Inspect the MAKRAY filter for any query (no API key needed)
+
+```bash
+makray context --vault ~/vault "obsidian claude integration"
+```
+
+Output:
+
+```
+⚡ MAKRAY Filter Results  —  query: 'obsidian claude integration'
+   Vault  : /home/user/vault
+   Notes  : 2 retrieved  |  ~273 tokens in context
+
+── Retrieved notes ─────────────────────
+  [1] MAKRAY Project  (project.md)  #makray #ai #obsidian
+  [2] Roadmap  (roadmap.md)  #planning #ai
+
+── Assembled system prompt ──────────────
+You are MAKRAY, an Operational Intelligent System Navigator …
+```
+
+### Inspect a note's parsed metadata
+
+```bash
+makray inspect --vault ~/vault "MAKRAY Project"
+```
+
+Output:
+
+```
+── Note metadata ────────────────────────
+  Title      : MAKRAY Project
+  File       : project.md
+  Words      : 25
+  Frontmatter:
+    title: MAKRAY Project
+    tags: ['makray', 'ai', 'obsidian']
+  Tags       : #makray  #ai  #obsidian
+  Links      : [[Roadmap]]  [[Architecture]]
+  Headings   :
+    • MAKRAY Project
+```
+
 ### Search the vault (no Claude call)
 
 ```bash
@@ -98,7 +147,29 @@ makray search --vault ~/vault "roadmap" --tag planning --tag ai
 
 ```bash
 makray list --vault ~/vault
+makray list --vault ~/vault --stats      # includes word count & link count
 makray list --vault ~/vault --tag project
+```
+
+### Validate your setup
+
+```bash
+makray doctor --vault ~/vault
+```
+
+Output:
+
+```
+⚡ MAKRAY doctor
+
+  ✓  Python ≥ 3.10  — running 3.12.3
+  ✓  anthropic package installed
+  ✓  pyyaml package installed
+  ✓  ANTHROPIC_API_KEY set  — found
+  ✓  Vault exists: /home/user/vault
+  ✓  Vault readable (42 note(s) found)  — 42 note(s)
+
+All checks passed. MAKRAY is ready!
 ```
 
 ---
