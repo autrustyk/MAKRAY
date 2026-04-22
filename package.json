@@ -1,0 +1,47 @@
+{
+  "name": "makray",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MAKRAY — Operational Intelligence System Navigator. AUTRUSTYK corp. Monorepo: core modules, backend services, and Next.js web app.",
+  "author": "Autrustyk",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": { "node": ">=20.0.0", "npm": ">=10.0.0" },
+  "os": ["darwin", "linux", "win32"],
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "setup": "npm install && node -e \"const fs=require('fs');if(!fs.existsSync('.env'))fs.copyFileSync('.env.example','.env')\"",
+    "dev": "npm --workspace @makray/web run dev",
+    "build": "npm --workspace @makray/web run build && tsc -p tsconfig.json",
+    "build:core": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "node -e \"['dist','.next','.turbo','coverage'].forEach(d=>require('fs').rmSync(d,{recursive:true,force:true}))\"",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --runInBand --coverage",
+    "test:integration": "jest --runInBand --testPathPattern=tests/integration",
+    "test:modules": "jest --runInBand --testPathPattern=tests/modules",
+    "check": "npm run typecheck && npm test",
+    "doctor": "node scripts/doctor.js",
+    "env": "node -e \"const fs=require('fs');if(!fs.existsSync('.env')){fs.copyFileSync('.env.example','.env');console.log('✓ Created .env from template. Edit it with real values.')}else{console.log('✓ .env already exists.')}\"",
+    "db:migrate": "node -e \"console.log('Apply backend/db/schema.sql to your Postgres DATABASE_URL')\"",
+    "db:reset": "node -e \"console.log('db:reset not yet implemented — coming in Phase 2.')\"",
+    "db:seed": "ts-node backend/db/seed.ts",
+    "lint": "node -e \"console.log('lint not yet configured — coming in Phase 2.')\"",
+    "format": "node -e \"console.log('format not yet configured — coming in Phase 2.')\"",
+    "clean:all": "node -e \"['dist','.next','.turbo','coverage','node_modules'].forEach(d=>require('fs').rmSync(d,{recursive:true,force:true}))\"",
+    "deploy:staging": "node -e \"console.log('deploy:staging not yet configured — coming in Phase 5.')\"",
+    "deploy:prod": "node -e \"console.log('deploy:prod not yet configured — coming in Phase 5.')\"",
+    "version:print": "node -p \"require('./package.json').version\""
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  },
+  "optionalDependencies": {
+    "pg": "^8.11.5"
+  }
+}
